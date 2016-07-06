@@ -8,10 +8,9 @@ Crema,E.R, Kandler, A., Shennan, S.J. "The effect of equilibrium assumptions on 
 Enrico R. Crema (enrico.crema@gmail.com)
 
 ## Contents
-* Core and utility R functions for analysis of 14C Summed Probability Distribution, including hypothesis testing against fitted null models (Exponential and Uniform distribution) and a permutation test for comparing two or more observed datasets. 
-* Script for generating figure 1~3 on the paper "Summed Probability Distribution of 14C Dates suggest divergence in the population dynamics of Central and Northern Japan during the Jomon Period"
-* 14C Dates from Hokkaido, Aomori, Gunma, Ibaraki, Tochigi, Tokyo, Saitama, Kanagawa, and Chiba prefectures in Japan
-* Site location (approximate to ~1km) of the 14C samples
+* ./src/ ... contains 
+
+
 ## Licences
 Text: CC-BY (http://creativecommons.org/licenses/by/4.0/)
 
