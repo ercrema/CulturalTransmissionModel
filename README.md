@@ -1,5 +1,5 @@
 # CulturalTransmissionModel
-Source codes for the paper "The effect of equilibrium assumptions on reconstructing patterns of cultural transmission from frequency data". 
+Sample codes for the paper "The effect of equilibrium assumptions on reconstructing patterns of cultural transmission from frequency data". Notice that in order to reproduce the results of the paper the simulation needs to be executed on a HPC. The examples script provides the basic workflow with just 0.01% of the runs used in the paper.
 
 ## Paper Reference 
 Crema,E.R, Kandler, A., Shennan, S.J. "The effect of equilibrium assumptions on reconstructing patterns of cultural transmission from frequency data"
