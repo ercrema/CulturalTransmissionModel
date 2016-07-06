@@ -1,4 +1,20 @@
-varpop<-function(freqMat,H,rho=2,wy=5,r,mu=0.001,b=0,alpha=1,duration=20,diagnostic=FALSE)
+#####################################
+#    Variable Population Version    #
+#####################################
+
+### PARAMETERS:
+## rho ... production rate per household
+## mu  ... innovation rate
+## b   ... frequency bias
+## wy   ... memory (in calendar years)
+## r   ... 1/sampling fraction
+## H ... number of households for each phase
+## freqMat ... observed frequencies of cultural variants
+## duration ... duration of each phase (in calendar years)
+## alpha ... parameter for the Dirichlet sampling 
+## diagnostic ... if set to TRUE returns predicted frequencies of cultural variants for each phase.
+
+varpop<-function(freqMat,H,rho,wy,r,mu,b,alpha,duration,diagnostic=FALSE)
     {
         ##Define number of phases to examine
         T=nrow(freqMat)-1

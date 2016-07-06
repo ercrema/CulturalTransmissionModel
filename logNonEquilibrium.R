@@ -16,8 +16,7 @@ prior_r=c(1/0.75,1/0.25)
 duration=20
 sampleRange=apply(obsData,1,sum)
 H=c(17,10,12,14,15,16,12,8)
-warmUp=5000
-nsim=10000 #number of simulations
+nsim=5000 #number of simulations
 transitions=7
 
 ### Create Parameter Space ###

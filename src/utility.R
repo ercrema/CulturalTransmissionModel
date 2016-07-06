@@ -1,3 +1,5 @@
+
+## Function for Dirichlet sampling ##
 rdirichlet<-function (n, alpha) 
 {
     l <- length(alpha)
@@ -6,6 +8,7 @@ rdirichlet<-function (n, alpha)
     x/as.vector(sm)
 }
 
+## Utility function for counting number of variants ##
 instances<-function(x,variants)    
 {
     x=c(x,variants)
@@ -13,7 +16,7 @@ instances<-function(x,variants)
     return(res)    
 }
 
-
+## Utility function for re-ordering frequency matrices ##
 reOrder<-function(data)
 {
 #Remove Empty Columns
@@ -36,13 +39,14 @@ reOrder<-function(data)
     return(data)	
 }
 
+## compute simpson's diversity index ##
 
-simpson<-function (x, MARGIN = 1, base = exp(1)) 
+simpson<-function (x, i = 1, base = exp(1)) 
 {
     x <- drop(as.matrix(x))
     if (length(dim(x)) > 1) {
-        total <- apply(x, MARGIN, sum)
-        x <- sweep(x, MARGIN, total, "/")
+        total <- apply(x, i, sum)
+        x <- sweep(x, i, total, "/")
     }
     else {
         x <- x/sum(x)

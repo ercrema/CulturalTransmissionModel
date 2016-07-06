@@ -1,4 +1,22 @@
-nonequilibrium<-function(startSeq,endSeq,H=c(17,17,10),rho=2,w=5,eta=40,mu=0.001,b=0,alpha=1,diagnostic=FALSE)
+#################################
+#    Non-Equilibrium Version    #
+#################################
+
+### PARAMETERS:
+## rho ... production rate per household
+## mu  ... innovation rate
+## b   ... frequency bias
+## wy   ... memory (in calendar years)
+## r   ... 1/sampling fraction
+## H ... number of households for phase i-1, i, and i+1
+## startSeq ... observed frequencies of cultural variants at phase i-1
+## endSeq ... observed frequencies of cultural variants at phase i
+## eta ... number of transmission events
+## duration ... duration of each phase (in calendar years)
+## alpha ... parameter for the Dirichlet sampling 
+## diagnostic ... if set to TRUE returns predicted frequencies of cultural variants for each phase.
+
+nonequilibrium<-function(startSeq,endSeq,H,rho,w,eta,mu,b,alpha,diagnostic=FALSE)
 {
     ##define number of possible traits that can be discovered
     k_initial=length(startSeq)

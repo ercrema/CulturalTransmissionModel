@@ -17,7 +17,7 @@ duration=20
 sampleRange=apply(obsData,1,sum)
 H=c(17,10,12,14,15,16,12,8)
 warmUp=5000
-nsim=200 #number of simulations
+nsim=5000 #number of simulations
 
 
 ### Create Parameter Space ###

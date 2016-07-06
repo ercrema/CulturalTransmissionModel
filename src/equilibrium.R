@@ -1,8 +1,23 @@
-############################################
-#    Equilibrium transmission Model        #
-############################################
+#################################
+#    Equilibrium Version        #
+#################################
 
-equilibrium<-function(rho=4,eta=27,mu=0.005,b=0,T=8,warmUp=5000,w=1,sampleRange=c(1183,493,410,469,862,1118,837,432),Hhat=13,obsData,diagnostic=FALSE)
+### PARAMETERS:
+## rho ... production rate per household
+## eta ... number of transmission events 
+## mu  ... innovation rate
+## b   ... frequency bias
+## w   ... memory (in number of transmission events)
+## T   ... number of phases
+## r   ... 1/sampling fraction
+## warmup ... number of transmission events for the burn-in phase
+## sampleRange ... observed sample size (n) for each phase
+## Hhat ... average number of households
+## obsData ... observed frequencies of cultural variants
+## diagnostic ... if set to TRUE returns predicted frequencies of cultural variants for each phase. 
+
+
+equilibrium<-function(rho,eta,mu,b,T,warmUp,w,sampleRange,Hhat,obsData,diagnostic=FALSE)
     {
 
         ##Compute Population Size:
