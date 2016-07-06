@@ -1,5 +1,5 @@
 # CulturalTransmissionModel
-Source codes for the paper "The effect of equilibrium assumptions on reconstructing patterns of cultural transmission from frequency data"
+Source codes for the paper "The effect of equilibrium assumptions on reconstructing patterns of cultural transmission from frequency data". 
 
 ## Paper Reference 
 Crema,E.R, Kandler, A., Shennan, S.J. "The effect of equilibrium assumptions on reconstructing patterns of cultural transmission from frequency data"
@@ -8,8 +8,9 @@ Crema,E.R, Kandler, A., Shennan, S.J. "The effect of equilibrium assumptions on 
 Enrico R. Crema (enrico.crema@gmail.com)
 
 ## Contents
-* ./src/ ... contains 
-
+* ./src/ ... contains core simulation model for the equilibrium, variable population, and variable population/transmission versions as well as a general utility function.
+* ./data/observedFrequencies.csv ... frequencies of different decorative motifs (coded BT1, BT2, ...) for phases VIII to XIV in the Merzbach assemblage
+* ./logEquilibrium.R, ./logNonEquilibrium.R, ./logVarPop.R ... sample script for executing the ABC framework. 
 
 ## Licences
 Text: CC-BY (http://creativecommons.org/licenses/by/4.0/)
