@@ -32,8 +32,8 @@ parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),
 ### Execute Simulations ###
 for (x in 1:nsim)
 	{
-		eta=ceiling(c(sampleRange*parameters$rho[x]/(round(mean(H))*parameters$rho[x])))
-		parameters$w[x]=ceiling(sum(eta )/(duration*length(sampleRange))*parameters$wy[x])
+		eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])
 		tmp=equilibrium(eta=eta,
 				w=parameters$wy[x],
 				rho=parameters$rho[x],

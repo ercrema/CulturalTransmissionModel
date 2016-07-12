@@ -9,8 +9,7 @@
 ## b   ... frequency bias
 ## w   ... memory (in number of transmission events)
 ## T   ... number of phases
-## r   ... 1/sampling fraction
-## warmup ... number of transmission events for the burn-in phase
+## warmUp ... number of transmission events for the burn-in phase
 ## sampleRange ... observed sample size (n) for each phase
 ## Hhat ... average number of households
 ## obsData ... observed frequencies of cultural variants
