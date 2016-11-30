@@ -50,7 +50,7 @@ for (x in 1:nsim)
 				(H[tiv$h1[y]] + H[tiv$h2[y]]))
 			w=ceiling(parameters$wy[x]/duration*eta)
 			Hseq=H[c(tiv$ha[y], tiv$hb[y],tiv$hc[y])]
-			tmp=nonequilibrium(startSeq=obsData[tiv$startF[y],],
+			tmp=varpoptrans(startSeq=obsData[tiv$startF[y],],
 					   endSeq=obsData[tiv$endF[y],],
 					   H=Hseq,
 					   rho=parameters$rho[x],w=w,
