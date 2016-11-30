@@ -1,6 +1,6 @@
-#################################
-#    Non-Equilibrium Version    #
-#################################
+##################################################
+#    Variable Population/Transmission Version    #
+##################################################
 
 ### PARAMETERS:
 ## rho ... production rate per household
@@ -16,7 +16,7 @@
 ## alpha ... parameter for the Dirichlet sampling 
 ## diagnostic ... if set to TRUE returns predicted frequencies of cultural variants for each phase.
 
-nonequilibrium<-function(startSeq,endSeq,H,rho,w,eta,mu,b,alpha,diagnostic=FALSE)
+varpoptrans<-function(startSeq,endSeq,H,rho,w,eta,mu,b,alpha,diagnostic=FALSE)
 {
     ##define number of possible traits that can be discovered
     k_initial=length(startSeq)
