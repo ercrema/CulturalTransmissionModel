@@ -30,7 +30,7 @@ parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),
 
 for (x in 1:nsim)
 	{
-		tmp=vardemo(freqMat=as.matrix(obsData),
+		tmp=varpop(freqMat=as.matrix(obsData),
 			    H=H,
 			    rho=parameters$rho[x],
 			    r=parameters$r[x],

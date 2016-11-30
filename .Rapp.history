@@ -1,0 +1,766 @@
+?chisq.test
+<- c(A = 20, B = 15, C = 25)#
+chisq.test(x)#
+chisq.test(as.table(x))             # the same#
+x <- c(89,37,30,28,2)#
+p <- c(40,20,20,15,5)#
+try(#
+chisq.test(x, p = p)                # gives an error#
+)#
+chisq.test(x, p = p, rescale.p = TRUE)#
+                                # works#
+p <- c(0.40,0.20,0.20,0.19,0.01)#
+                                # Expected count in category 5#
+                                # is 1.86 < 5 ==> chi square approx.#
+chisq.test(x, p = p)
+p
+<- c(A = 20, B = 15, C = 25)#
+chisq.test(x)#
+chisq.test(as.table(x))             # the same#
+x <- c(89,37,30,28,2)#
+p <- c(40,20,20,15,5)#
+try(#
+chisq.test(x, p = p)                # gives an error#
+)#
+chisq.test(x, p = p, rescale.p = TRUE)#
+                                # works#
+p <- c(0.50,0.20,0.20,0.19,0.01)#
+                                # Expected count in category 5#
+                                # is 1.86 < 5 ==> chi square approx.#
+chisq.test(x, p = p)
+prProb=c(1,  2,  1,  1.3, 0.3, 0.2, 0.6)#
+postProb=c(1, 1.5,0.8,0.75, 0.3, 0.8, 2)#
+#
+set.seed(1)#
+siteApre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=50,prob= prProb)#
+siteApost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=54,prob= prProb)#
+siteBpost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=88,replace=T,prob= postProb)#
+siteCpre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=96,replace=T,prob= prProb)#
+site=c(rep("site_A",104),rep("site_B",88),rep("site_C",96))#
+prepost=c(rep("pre",50),rep("post",54),rep("post",88),rep("pre",96))#
+#
+data=data.frame(site=site,prepost=prepost,age=c(siteApre, siteApost, siteBpost, siteCpre))#
+data= data[sample(1:nrow(data)),]#
+write.csv(data,"~/github/BioAnthStats/supervision/topic3_question1data.csv",row.names=FALSE)#
+### SOLUTION ####
+data$age=factor(data$age,levels=c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),ordered=TRUE)#
+data$number=as.numeric(data$age)#
+#
+wilcox.test(subset(data,prepost=="pre")$number,subset(data,prepost=="post")$number) #significant, but:#
+wilcox.test(subset(data,site=="site_A"&prepost=="pre")$number,subset(data,site=="site_A"&prepost=="post")$number) #non significant
+ks.test(subset(data,prepost=="pre")$number,subset(data,prepost=="post")$number) #significant, but:#
+ks.test(subset(data,site=="site_A"&prepost=="pre")$number,subset(data,site=="site_A"&prepost=="post")$number) #non significant
+ks.test(subset(data,site=="site_B")$number,subset(data,site=="site_C")$number) #non significant
+prProb=c(1,  2,  1,  1.3, 0.3, 0.2, 0.6)#
+postProb=c(1, 1.5,0.8,0.75, 0.3, 0.8, 2)#
+#
+set.seed(1)#
+siteApre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=50,prob= prProb)#
+siteApost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=54,prob= prProb)#
+siteBpost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=88,replace=T,prob= postProb)#
+siteCpre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=96,replace=T,prob= prProb)#
+site=c(rep("site_A",104),rep("site_B",88),rep("site_C",96))#
+prepost=c(rep("pre",50),rep("post",54),rep("post",88),rep("pre",96))#
+#
+data=data.frame(site=site,prepost=prepost,age=c(siteApre, siteApost, siteBpost, siteCpre))#
+data= data[sample(1:nrow(data)),]
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question1data.csv")
+data
+dataset1=data
+class(dataset1$age)
+> levels(dataset1$age)
+levels(dataset1$age)
+pre=subset(dataset1,prepost=="pre")
+post=subset(dataset1,prepost==“post")
+post=subset(dataset1,prepost=="post")
+pre
+post
+wilcox.test(as.numeric(x=pre$age,y=post$age,paired=F))
+wilcox.test(as.numeric(x=pre$age,y=post$age))
+wilcox.test(x=as.numeric(pre$age),y=as.numeric(post$age))
+as.numeric(x=pre$age,y=post$age)
+? wilcox.test
+wilcox.test(as.numeric(SiteA$age) ~ SiteA$prepost,mu=0,alt="two.sided",conf.int=T,conf.level=0.95,paired=F)
+> SiteA<-subset(dataset1,dataset1$site=="site_A")
+SiteA<-subset(dataset1,dataset1$site=="site_A")
+SiteB<-subset(dataset1,dataset1$site=="site_B")
+SiteA
+siteB
+SiteC<-subset(dataset1,dataset1$site=="site_C")
+SiteA$prepost
+?wilcox.test
+as.numeric(SiteA$age) ~ SiteA$prepost
+wilcox.test(as.numeric(SiteA$age) ~ SiteA$prepost,mu=0,alt="two.sided",conf.int=T,conf.level=0.95,paired=F)
+wilcox.test(as.numeric(SiteA$age) ~ SiteA$prepost,paired=F)
+wilcox.test(subset(data,site=="site_A"&prepost=="pre")$number,subset(data,site=="site_A"&prepost=="post")$number) #non significant
+prProb=c(1,  2,  1,  1.3, 0.3, 0.2, 0.6)#
+postProb=c(1, 1.5,0.8,0.75, 0.3, 0.8, 2)#
+#
+set.seed(1)#
+siteApre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=50,prob= prProb)#
+siteApost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=54,prob= prProb)#
+siteBpost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=88,replace=T,prob= postProb)#
+siteCpre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=96,replace=T,prob= prProb)#
+site=c(rep("site_A",104),rep("site_B",88),rep("site_C",96))#
+prepost=c(rep("pre",50),rep("post",54),rep("post",88),rep("pre",96))#
+#
+data=data.frame(site=site,prepost=prepost,age=c(siteApre, siteApost, siteBpost, siteCpre))#
+data= data[sample(1:nrow(data)),]
+wilcox.test(subset(data,site=="site_A"&prepost=="pre")$number,subset(data,site=="site_A"&prepost=="post")$number) #non significant
+prProb=c(1,  2,  1,  1.3, 0.3, 0.2, 0.6)#
+postProb=c(1, 1.5,0.8,0.75, 0.3, 0.8, 2)#
+#
+set.seed(1)#
+siteApre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=50,prob= prProb)#
+siteApost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=54,prob= prProb)#
+siteBpost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=88,replace=T,prob= postProb)#
+siteCpre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=96,replace=T,prob= prProb)#
+site=c(rep("site_A",104),rep("site_B",88),rep("site_C",96))#
+prepost=c(rep("pre",50),rep("post",54),rep("post",88),rep("pre",96))#
+#
+data=data.frame(site=site,prepost=prepost,age=c(siteApre, siteApost, siteBpost, siteCpre))#
+data= data[sample(1:nrow(data)),]
+data$age=factor(data$age,levels=c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),ordered=TRUE)#
+data$number=as.numeric(data$age)#
+#
+wilcox.test(subset(data,prepost=="pre")$number,subset(data,prepost=="post")$number) #significant, but:#
+wilcox.test(subset(data,site=="site_A"&prepost=="pre")$number,subset(data,site=="site_A"&prepost=="post")$number) #non significant
+wilcox.test(as.numeric(SiteA$age) ~ SiteA$prepost,paired=F)
+wilcox.test(as.numeric(SiteA$age) ~ SiteA$prepost)
+subset(data,site=="site_A"&prepost=="pre")$number
+subset(data,site=="site_A"&prepost=="post")$number
+as.numeric(SiteA$age)
+SiteA$age
+SiteA$age[SiteA$prepost=="pre"]
+as.numeric(SiteA$age[SiteA$prepost=="pre"])
+sort(as.numeric(SiteA$age[SiteA$prepost=="pre"]))
+sort(as.numeric(SiteA$age[SiteA$prepost=="pre"]))==sort(subset(data,site=="site_A"&prepost=="pre")$number)
+sort(as.numeric(SiteA$age[SiteA$prepost=="post"]))==sort(subset(data,site=="site_A"&prepost=="post")$number)
+?wilcox
+?wilcox.test
+set.seed(1)#
+skill=sample(c(1,2,3,4,5),replace=T,size=31,prob=c(0.1,0.2,0.4,0.2,0.1))#
+social=rep(NA,31)#
+#
+for (x in 1:31)#
+{#
+	if (skill[x]==1){social[x]=rbinom(1,size=150,p=0.1)}#
+	if (skill[x]==2){social[x]=rbinom(1, size = 150,p=0.2)}#
+	if (skill[x]==3){social[x]=rbinom(1, size = 150,p=0.3)}#
+	if (skill[x]==4){social[x]=rbinom(1, size = 150,p=0.4)}#
+	if (skill[x]==5){social[x]=rbinom(1, size = 150,p=0.5)}	#
+}#
+#
+data=data.frame(skill=skill,social_influence=social)#
+write.csv(data,"~/github/BioAnthStats/supervision/topic3_question2data.csv",row.names=FALSE)#
+#
+cor.test(data$skill,data$social_influence,method="spearman")
+set.seed(1)#
+skill=sample(c(1,2,3,4,5),replace=T,size=31,prob=c(0.1,0.2,0.4,0.2,0.1))#
+social=rep(NA,31)#
+#
+for (x in 1:31)#
+{#
+	if (skill[x]==1){social[x]=rbinom(1,size=150,p=0.1)}#
+	if (skill[x]==2){social[x]=rbinom(1, size = 150,p=0.2)}#
+	if (skill[x]==3){social[x]=rbinom(1, size = 150,p=0.3)}#
+	if (skill[x]==4){social[x]=rbinom(1, size = 150,p=0.4)}#
+	if (skill[x]==5){social[x]=rbinom(1, size = 150,p=0.5)}	#
+}#
+#
+data=data.frame(skill=skill,social_influence=social)#
+write.csv(data,"~/github/BioAnthStats/supervision/topic3_question2data.csv",row.names=FALSE)#
+#
+cor.test(data$skill,data$social_influence,method="kendall")
+cor.test(data$skill,data$social_influence,method="spearman")
+data=read.csv(data,"~/github/BioAnthStats/supervision/topic3_question2data.csv",row.names=FALSE)
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question2data.csv",row.names=FALSE)
+#SOlution#
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question2data.csv")#
+cor.test(data$skill,data$social_influence,method="spearman")
+cor.test(data$skill,data$social_influence,method="kendall")
+rexp(10)
+rexp(5)
+a=rexp(5)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+prProb=c(1,  2,  1,  1.3, 0.3, 0.2, 0.6)#
+postProb=c(1, 1.5,0.8,0.75, 0.3, 0.8, 2)#
+#
+set.seed(1)#
+siteApre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=50,prob= prProb)#
+siteApost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=54,prob= prProb)#
+siteBpost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=88,replace=T,prob= postProb)#
+siteCpre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=96,replace=T,prob= prProb)#
+site=c(rep("site_A",104),rep("site_B",88),rep("site_C",96))#
+prepost=c(rep("pre",50),rep("post",54),rep("post",88),rep("pre",96))#
+#
+data=data.frame(site=site,prepost=prepost,age=c(siteApre, siteApost, siteBpost, siteCpre))
+xtab1=table(data$age, question1data$prepost)
+xtab1=table(data$age, data$prepost)
+xtab1
+xtab1[,c(2,1)]
+xtab1[,1]
+xtab1[,c(1,2)]
+xtab1[,c(2,1)]
+xtab1[7:1,c(2,1)]
+t(xtab1)
+barplot(t(xtab1),beside=T)
+barplot(xtab1,beside=T)
+barplot(t(xtab1),beside=T)
+t(xtab1)
+a=rexp(5)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+hist(rexp(1000))
+a=rexp(5)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+a=rexp(10)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+chisq.test
+?chisq.test
+plot(runif(100),log="x")
+plot(runif(100),log=c("x","y"))
+plot(runif(100),log=c("y"))
+plot(runif(100),log=c("xy"))
+plot(runif(100),log=c"xy")
+plot(runif(100),log="xy")
+prProb=c(1,  2,  1,  1.3, 0.3, 0.2, 0.6)#
+postProb=c(1, 1.5,0.8,0.75, 0.3, 0.8, 2)#
+#
+set.seed(1)#
+siteApre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=50,prob= prProb)#
+siteApost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),replace=T,size=54,prob= prProb)#
+siteBpost=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=88,replace=T,prob= postProb)#
+siteCpre=sample(c("0 to 10","11-20","21-30","31-40","41-50","51-70","over 70"),size=96,replace=T,prob= prProb)
+site=c(rep("site_A",104),rep("site_B",88),rep("site_C",96))#
+prepost=c(rep("pre",50),rep("post",54),rep("post",88),rep("pre",96))
+table(data)
+data=data.frame(site=site,prepost=prepost,age=c(siteApre, siteApost, siteBpost, siteCpre))
+table(data$prepost,data$age)
+chisq.test(table(data$prepost,data$age))
+a=chisq.test(table(data$prepost,data$age))
+a$expected
+hist(rexp(100))
+a=rexp(10)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+a
+a=rexp(100)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+a=rexp(10)
+hist(a)
+data<-read.csv("~/github/BioAnthStats/supervision/topic2_question3data.csv")
+data
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question1data.csv")
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question2data.csv")
+data
+plot(data$skill,data$social_influence)
+plot(data$skill,data$social_influence,cph=20)
+plot(data$skill,data$social_influence,pch=20)
+Areas=c(23.34,17.16,78.77,109.45)
+Areas/sum(Areas)
+Areas/sum(Areas)*100
+Areas
+sum(Area)
+sum(Areas)
+Areas/sum(Areas)
+2/5
+Areas/sum(Areas)
+Areas/sum(Areas)*100
+chisq.test(x=c(7,5,41,71),p=Areas/sum(Areas))
+Areas/sum(Areas)*sum(c(7,5,41,71))
+sum(c(7,5,41,71))
+124*0.10204617
+chisq.test(x=c(7,5,41,71),p=c(0.25,0.25,0.25,0.25))
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question1data.csv")
+data$age[which(data$age=="0 to 10"]="0-10"
+data$age[which(data$age=="0 to 10")]="0-10"
+data$age
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question1data.csv")
+data$age
+data$age[which(data$age=="0 to 10")]="0-10"
+?chisq.test
+M <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))#
+dimnames(M) <- list(gender = c("F", "M"),#
+                    party = c("Democrat","Independent", "Republican"))#
+(Xsq <- chisq.test(M))  # Prints test summary
+Xsq <- chisq.test(M)
+M
+Xsq
+Xsq$expected
+result <- chisq.test(M)
+result$expected
+a=rexp(100)
+hist(a)
+a=rexp(10)
+ks.test(a,"pnorm",mean=mean(a),sd=sd(a))
+a
+ks.test(a,pnorm,mean=mean(a),sd=sd(a))
+?wilcox.test
+x <- c(0.80, 0.83, 1.89, 1.04, 1.45, 1.38, 1.91, 1.64, 0.73, 1.46)#
+y <- c(1.15, 0.88, NA, 0.74, 1.21)
+wilcox.test(x,y)
+data=read.csv("~/github/BioAnthStats/supervision/topic3_question1data.csv")
+data
+data$randomnumber=runif(288)
+data
+data$age
+data$age=factor(data$age,ordered=T)
+data$age
+as.numeric(data$age)
+data$ageNumeric=as.numeric(data$age)
+data
+subseT
+(163.5-159.1)/5.2
+(162-158.7)/3.7
+data<-read.csv("~/github/BioAnthStats/supervision/topic2_question2data.csv")
+t.test(subset(data,sex=="male"&period=="medieval")$measurement,#
+subset(data,sex=="male"&period=="postmedieval")$measurement)
+subset(data,sex=="male"&period=="medieval")$measurement
+subset(data,sex=="male"&period=="postmedieval")$measurement
+t.test(subset(data,sex=="male"&period=="medieval")$measurement,#
+subset(data,sex=="male"&period=="postmedieval")$measurement)
+t.test(subset(data,sex=="male"&period=="medieval")$measurement,#
+subset(data,sex=="male"&period=="postmedieval")$measurement,var.equal=T)
+princomp
+?princomp
+setwd("~/github/CulturalTransmissionModel")
+obsData=read.csv("data/observedFrequencies.csv",row.names=1)
+obsData
+### Source Functions ####
+source("src/utility.R")#
+source("src/equilibrium.R")#
+#
+### Define Prior Ranges ####
+prior_mu=c(0.001,0.01)#
+prior_b=c(-0.5,0.5)#
+prior_rho=c(1,5)#
+prior_wy=c(0.2,5)#
+prior_r=c(1/0.75,1/0.25)#
+#
+### Define Constants and Settings ####
+duration=20#
+sampleRange=apply(obsData,1,sum)#
+H=c(17,10,12,14,15,16,12,8)#
+warmUp=5000#
+nsim=5000 #number of simulations
+### Create Parameter Space ####
+parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),#
+		      rho=runif(nsim,prior_rho[1],prior_rho[2]),#
+		      b=runif(nsim,prior_b[1],prior_b[2]),#
+		      wy=runif(nsim,prior_wy[1],prior_wy[2]),#
+		      w=NA,#
+		      r=runif(nsim,prior_r[1],prior_r[2]),#
+		      epsilon=NA)
+parameters
+nsim=10
+for (x in 1:nsim)#
+	{#
+		eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))#
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])#
+		tmp=equilibrium(eta=eta,#
+				w=parameters$wy[x],#
+				rho=parameters$rho[x],#
+				mu=parameters$mu[x],#
+				b=parameters$b[x],#
+				warmUp=warmUp,#
+				sampleRange=sampleRange,#
+				Hhat=round(mean(H)),#
+				obsData=as.matrix(obsData),#
+				T=nrow(obsData),#
+				diagnostic=FALSE)#
+		parameters$epsilon[x]=tmp$raw.epsilon#
+	}
+x
+eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))#
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])
+tmp=equilibrium(eta=eta,#
+				w=parameters$wy[x],#
+				rho=parameters$rho[x],#
+				mu=parameters$mu[x],#
+				b=parameters$b[x],#
+				warmUp=warmUp,#
+				sampleRange=sampleRange,#
+				Hhat=round(mean(H)),#
+				obsData=as.matrix(obsData),#
+				T=nrow(obsData),#
+				diagnostic=FALSE)
+round(mean(H))
+as.matrix(obsData)
+nrow(obsData)
+eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))#
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])
+parameters$w
+nsim=10
+### Create Parameter Space ####
+parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),#
+		      rho=runif(nsim,prior_rho[1],prior_rho[2]),#
+		      b=runif(nsim,prior_b[1],prior_b[2]),#
+		      wy=runif(nsim,prior_wy[1],prior_wy[2]),#
+		      w=NA,#
+		      r=runif(nsim,prior_r[1],prior_r[2]),#
+		      epsilon=NA)
+for (x in 1:nsim)#
+	{#
+		eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))#
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])#
+		tmp=equilibrium(eta=eta,#
+				w=parameters$wy[x],#
+				rho=parameters$rho[x],#
+				mu=parameters$mu[x],#
+				b=parameters$b[x],#
+				warmUp=warmUp,#
+				sampleRange=sampleRange,#
+				Hhat=round(mean(H)),#
+				obsData=as.matrix(obsData),#
+				T=nrow(obsData),#
+				diagnostic=FALSE)#
+		parameters$epsilon[x]=tmp$raw.epsilon#
+	}
+parameters$w
+x
+eta
+parameters$w[x]
+for (x in 1:nsim)#
+	{#
+		eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))#
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])#
+		tmp=equilibrium(eta=eta,#
+				w=parameters$w[x],#
+				rho=parameters$rho[x],#
+				mu=parameters$mu[x],#
+				b=parameters$b[x],#
+				warmUp=warmUp,#
+				sampleRange=sampleRange,#
+				Hhat=round(mean(H)),#
+				obsData=as.matrix(obsData),#
+				T=nrow(obsData),#
+				diagnostic=FALSE)#
+		parameters$epsilon[x]=tmp$raw.epsilon#
+	}
+x
+eta=eta
+w=parameters$w[x]
+rho=parameters$rho[x]
+mu=parameters$mu[x]
+b=parameters$b[x]
+warmUp=warmUp
+sampleRange=sampleRange
+Hhat=round(mean(H))
+obsData=as.matrix(obsData)
+T=nrow(obsData)
+diagnostic=FALSE
+##Compute Population Size:#
+        nu=round(rho*Hhat)#
+#
+        ##round number of transmission events:#
+        newTraitCounter=nu#
+#
+        ##Initialise with all Agents having a different trait#
+        initialTraits<-1:nu#
+        ##Outputs##
+#
+        traitList<-vector("list",length=w)#
+        fullSamplePerPhase<-vector("list",length=T)#
+        timeCounter=2#
+        if (w==1){timeCounter=1}#
+#
+        ##Initial Production#
+        traitList[[1]]=initialTraits#
+        currentTraits<-initialTraits
+for (t in 2:warmUp)#
+            {#
+                ##transmission#
+                if (length(unique(unlist(traitList)))>1)#
+                    {#
+                        sampleSpace<-table(unlist(traitList))#
+                        sampleSpace<-sampleSpace^(1-b) #transmission bias#
+                        currentTraits<-sample(size=nu,x=as.numeric(names(sampleSpace)),replace=TRUE,prob=sampleSpace)#
+                    }#
+                ##mutation#
+                index<-which(runif(nu)<mu)#
+                if (length(index)>0)#
+                    {#
+                        newTraits<-newTraitCounter+1:length(index)#
+                        newTraitCounter<-max(newTraits)    #
+                        currentTraits[index]=newTraits#
+                    }#
+#
+                ##expression #
+                traitList[[timeCounter]]<-currentTraits#
+                timeCounter=timeCounter+1; if(timeCounter>w){timeCounter=1}#
+            }
+for (x in 1:T)#
+            {#
+                for (y in 1:eta[x])#
+                    {#
+                                        #transmission#
+                        if (length(unique(unlist(traitList)))>1)#
+                            {#
+                                sampleSpace<-table(unlist(traitList))#
+                                sampleSpace<-sampleSpace^(1-b) #transmission bias#
+                                currentTraits<-sample(size=nu,x=as.numeric(names(sampleSpace)),replace=TRUE,prob=sampleSpace)#
+                            }#
+#
+                        index<-which(runif(nu)<mu)#
+                        if (length(index)>0)#
+                            {#
+                                newTraits<-newTraitCounter+1:length(index)#
+                                newTraitCounter<-max(newTraits)    #
+                                currentTraits[index]=newTraits#
+                            }#
+#
+                                        #expression#
+                        traitList[[timeCounter]]<-currentTraits#
+                        timeCounter=timeCounter+1; if(timeCounter>w){timeCounter=1}#
+#
+                                        #store pots#
+                        fullSamplePerPhase[[x]]<-c(fullSamplePerPhase[[x]],currentTraits)#
+#
+                    }#
+                                        # end of block procedures:#
+                replace=TRUE#
+                if (length(fullSamplePerPhase[[x]])>sampleRange[x]) {replace=FALSE}#
+                fullSamplePerPhase[[x]]<-sample(fullSamplePerPhase[[x]],size=sampleRange[x],replace=replace)#
+            }
+#Post Analysis:#
+allTraits=unique(unlist(fullSamplePerPhase))#
+resMatrix<-t(sapply(fullSamplePerPhase,instances,allTraits))#
+#Calculate diversity indices#
+        if (length(allTraits)>1)#
+            {#
+                d.epsilon=sqrt(sum((simpson(resMatrix)-simpson(obsData))^2))#
+            }#
+        if (length(allTraits)==1)#
+            {#
+                d.epsilon=sqrt(sum((0-simpson(obsData))^2))              #
+            }
+allTraits
+resMatrix
+simpson
+simpson(resMatrix)
+library(vegan)
+simpson
+diversity
+bsData=read.csv("data/observedFrequencies.csv",row.names=1)#
+#
+### Source Functions ####
+source("src/utility.R")#
+source("src/equilibrium.R")
+### Define Prior Ranges ####
+prior_mu=c(0.001,0.01)#
+prior_b=c(-0.5,0.5)#
+prior_rho=c(1,5)#
+prior_wy=c(0.2,5)#
+prior_r=c(1/0.75,1/0.25)#
+#
+### Define Constants and Settings ####
+duration=20#
+sampleRange=apply(obsData,1,sum)#
+H=c(17,10,12,14,15,16,12,8)#
+warmUp=5000
+nsim=10
+### Create Parameter Space ####
+parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),#
+		      rho=runif(nsim,prior_rho[1],prior_rho[2]),#
+		      b=runif(nsim,prior_b[1],prior_b[2]),#
+		      wy=runif(nsim,prior_wy[1],prior_wy[2]),#
+		      w=NA,#
+		      r=runif(nsim,prior_r[1],prior_r[2]),#
+		      epsilon=NA)#
+#
+### Execute Simulations ####
+for (x in 1:nsim)#
+	{#
+		eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))#
+		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])#
+		tmp=equilibrium(eta=eta,#
+				w=parameters$w[x],#
+				rho=parameters$rho[x],#
+				mu=parameters$mu[x],#
+				b=parameters$b[x],#
+				warmUp=warmUp,#
+				sampleRange=sampleRange,#
+				Hhat=round(mean(H)),#
+				obsData=as.matrix(obsData),#
+				T=nrow(obsData),#
+				diagnostic=FALSE)#
+		parameters$epsilon[x]=tmp$raw.epsilon#
+	}
+parameters$epsilon
+### Compute Posterior ### #
+cutoff=0.1 #in this case a top-skim of the best 10%#
+threshold=cutoff*nsim#
+index=order(parameters$epsilon)[1:threshold]#
+posterior=parameters[index,]
+parameters$wy
+parameters$w
+obsData=read.csv("data/observedFrequencies.csv",row.names=1)#
+#
+### Source Functions ####
+source("src/utility.R")#
+source("src/varpop.R")#
+#
+### Define Prior Ranges ####
+prior_mu=c(0.001,0.01)#
+prior_b=c(-0.5,0.5)#
+prior_rho=c(1,5)#
+prior_wy=c(0.2,5)#
+prior_r=c(1/0.75,1/0.25)#
+### Define Constants and Settings ####
+duration=20#
+sampleRange=apply(obsData,1,sum)#
+H=c(17,10,12,14,15,16,12,8)#
+nsim=5000 #number of simulations
+nsim=10
+### Create Parameter Space ####
+parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),#
+		      rho=runif(nsim,prior_rho[1],prior_rho[2]),#
+		      b=runif(nsim,prior_b[1],prior_b[2]),#
+		      wy=runif(nsim,prior_wy[1],prior_wy[2]),#
+		      r=runif(nsim,prior_r[1],prior_r[2]),#
+		      epsilon=NA)
+for (x in 1:nsim)#
+	{#
+		tmp=vardemo(freqMat=as.matrix(obsData),#
+			    H=H,#
+			    rho=parameters$rho[x],#
+			    r=parameters$r[x],#
+			    mu=parameters$mu[x],#
+			    b=parameters$b[x],#
+			    w=parameters$wy[x],#
+			    alpha=1,#
+			    duration=20,#
+			    diagnostic=FALSE)#
+#
+		parameters$epsilon[x]=tmp#
+	}
+for (x in 1:nsim)#
+	{#
+		tmp=varpop(freqMat=as.matrix(obsData),#
+			    H=H,#
+			    rho=parameters$rho[x],#
+			    r=parameters$r[x],#
+			    mu=parameters$mu[x],#
+			    b=parameters$b[x],#
+			    w=parameters$wy[x],#
+			    alpha=1,#
+			    duration=20,#
+			    diagnostic=FALSE)#
+#
+		parameters$epsilon[x]=tmp#
+	}
+### Compute Posterior ### #
+cutoff=0.1 #in this case a top-skim of the best 10%#
+threshold=cutoff*nsim#
+index=order(parameters$epsilon)[1:threshold]#
+posterior=parameters[index,]
+posterior
+### Read Data ####
+obsData=as.matrix(read.csv("data/observedFrequencies.csv",row.names=1))#
+#
+### Source Functions ####
+source("src/utility.R")#
+source("src/varpoptrans.R")
+### Define Prior Ranges ####
+prior_mu=c(0.001,0.01)#
+prior_b=c(-0.5,0.5)#
+prior_rho=c(1,5)#
+prior_wy=c(0.2,5)#
+prior_r=c(1/0.75,1/0.25)#
+#
+### Define Constants and Settings ####
+duration=20#
+sampleRange=apply(obsData,1,sum)#
+H=c(17,10,12,14,15,16,12,8)#
+nsim=5000 #number of simulations#
+transitions=7
+### Create Parameter Space ####
+parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),#
+		      rho=runif(nsim,prior_rho[1],prior_rho[2]),#
+		      b=runif(nsim,prior_b[1],prior_b[2]),#
+		      wy=runif(nsim,prior_wy[1],prior_wy[2]),#
+		      r=runif(nsim,prior_r[1],prior_r[2]))#
+#
+### Loop index ####
+tiv=data.frame(h1=1:7,#
+	       h2=2:8,#
+	       target=2:8,#
+	       ha=c(1,1:6),#
+	       hb=1:7,#
+	       hc=2:8,#
+	       startF=1:7,#
+	       endF=2:8)
+epsilonMatrix=matrix(NA,nrow=nsim,ncol=7)
+for (x in 1:nsim)#
+	{#
+		target=sampleRange*parameters$r[x]#
+	for (y in 1:transitions)#
+		{#
+			eta=round(((target[tiv$target[y]]*2)/parameters$rho[x] -#
+				   H[tiv$h1[y]] + H[tiv$h2[y]])/#
+				(H[tiv$h1[y]] + H[tiv$h2[y]]))#
+			w=ceiling(parameters$wy[x]/duration*eta)#
+			Hseq=H[c(tiv$ha[y], tiv$hb[y],tiv$hc[y])]#
+			tmp=varpoptrans(startSeq=obsData[tiv$startF[y],],#
+					   endSeq=obsData[tiv$endF[y],],#
+					   H=Hseq,#
+					   rho=parameters$rho[x],w=w,#
+					   mu=parameters$mu[x],#
+					   b=parameters$b[x],#
+					   eta=eta,#
+					   alpha=1,diagnostic=FALSE)#
+			epsilonMatrix[x,y]=as.numeric(tmp)#
+		}#
+	}
+nsim
+nsim=10
+transitions=7#
+#
+### Create Parameter Space ####
+parameters=data.frame(mu=runif(nsim,prior_mu[1],prior_mu[2]),#
+		      rho=runif(nsim,prior_rho[1],prior_rho[2]),#
+		      b=runif(nsim,prior_b[1],prior_b[2]),#
+		      wy=runif(nsim,prior_wy[1],prior_wy[2]),#
+		      r=runif(nsim,prior_r[1],prior_r[2]))#
+#
+### Loop index ####
+tiv=data.frame(h1=1:7,#
+	       h2=2:8,#
+	       target=2:8,#
+	       ha=c(1,1:6),#
+	       hb=1:7,#
+	       hc=2:8,#
+	       startF=1:7,#
+	       endF=2:8)#
+#
+epsilonMatrix=matrix(NA,nrow=nsim,ncol=7)#
+#
+### Execute Simulations ####
+#
+for (x in 1:nsim)#
+	{#
+		target=sampleRange*parameters$r[x]#
+	for (y in 1:transitions)#
+		{#
+			eta=round(((target[tiv$target[y]]*2)/parameters$rho[x] -#
+				   H[tiv$h1[y]] + H[tiv$h2[y]])/#
+				(H[tiv$h1[y]] + H[tiv$h2[y]]))#
+			w=ceiling(parameters$wy[x]/duration*eta)#
+			Hseq=H[c(tiv$ha[y], tiv$hb[y],tiv$hc[y])]#
+			tmp=varpoptrans(startSeq=obsData[tiv$startF[y],],#
+					   endSeq=obsData[tiv$endF[y],],#
+					   H=Hseq,#
+					   rho=parameters$rho[x],w=w,#
+					   mu=parameters$mu[x],#
+					   b=parameters$b[x],#
+					   eta=eta,#
+					   alpha=1,diagnostic=FALSE)#
+			epsilonMatrix[x,y]=as.numeric(tmp)#
+		}#
+	}
+parameters=as.data.frame(cbind(parameters,epsilonMatrix))#
+colnames(parameters)=c("mu","rho","b","wy","r","phase7to8","phase8to9","phase9to10","phase10to11","phase11to12","phase12to13","phase13to14")
+### Compute Posterior ### #
+cutoff=0.1 #in this case a top-skim of the best 10%#
+threshold=cutoff*nsim#
+posterior_b95=matrix(NA,nrow=2,ncol=7)#
+posterior_b50=matrix(NA,nrow=2,ncol=7)

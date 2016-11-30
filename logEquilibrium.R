@@ -35,7 +35,7 @@ for (x in 1:nsim)
 		eta=ceiling(c(sampleRange*parameters$r[x]/(round(mean(H))*parameters$rho[x])))
 		parameters$w[x]=ceiling(sum(eta)/(duration*length(sampleRange))*parameters$wy[x])
 		tmp=equilibrium(eta=eta,
-				w=parameters$wy[x],
+				w=parameters$w[x],
 				rho=parameters$rho[x],
 				mu=parameters$mu[x],
 				b=parameters$b[x],

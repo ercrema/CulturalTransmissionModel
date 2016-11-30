@@ -3,7 +3,7 @@ obsData=as.matrix(read.csv("data/observedFrequencies.csv",row.names=1))
 
 ### Source Functions ###
 source("src/utility.R")
-source("src/nonequilibrium.R")
+source("src/varpoptrans.R")
 
 ### Define Prior Ranges ###
 prior_mu=c(0.001,0.01)

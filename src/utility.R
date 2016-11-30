@@ -54,7 +54,7 @@ simpson<-function (x, i = 1, base = exp(1))
 
     x <- x * x
     if (length(dim(x)) > 1) 
-        H <- apply(x, MARGIN, sum, na.rm = TRUE)
+        H <- apply(x, 1, sum, na.rm = TRUE)
     else {H <- sum(x, na.rm = TRUE)}
 
     return(1 - H)

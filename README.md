@@ -11,7 +11,7 @@ Enrico R. Crema (enrico.crema@gmail.com)
 ## Contents
 * ./src/ ... contains core simulation model for the equilibrium, variable population, and variable population/transmission versions as well as a general utility function.
 * ./data/observedFrequencies.csv ... frequencies of different decorative motifs (coded BT1, BT2, ...) for phases VIII to XIV in the Merzbach assemblage
-* ./logEquilibrium.R, ./logNonEquilibrium.R, ./logVarPop.R ... sample script for executing the ABC framework. 
+* ./logEquilibrium.R, ./logVarPopTrans.R, ./logVarPop.R ... sample script for executing the ABC framework. 
 
 ## Licences
 Text: CC-BY (http://creativecommons.org/licenses/by/4.0/)
